@@ -1,0 +1,10 @@
+:root {
+  --primary: #1976d2;
+}
+
+[data-theme="dark"] {
+  --primary: #90caf9;
+}
+[data-theme="light"] {
+  --primary: #1976d2;
+}
