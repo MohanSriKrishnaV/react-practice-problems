@@ -13,10 +13,9 @@ import Cart from "../pages/Cart/Cart";
 import ThemeToggler from "../pages/ThemeToggler";
 import Login from "../pages/Login";
 import { useLocation } from "react-router-dom";
-
+import ImgUpload from "../pages/ImgUpload";
 import { useNavigate } from "react-router-dom";
 import Unauthorized from "../pages/Unauthorized";
-
 import ProtectedRoute from "../pages/ProtectedRoute";
 import { useState } from "react";
 import { Button } from "@mui/material";
@@ -24,7 +23,6 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from '@mui/material/IconButton';
 // import DrawerList from "../pages/DrawerList";
 import LogoutIcon from '@mui/icons-material/Logout';
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -46,7 +44,9 @@ const navItems = [
   { path: "/Scroll", label: "Scroll", roles: ["admin"] },
   { path: "/Products", label: "Products", roles: ["admin"] },
   { path: "/Cart", label: "Cart", roles: ["admin"] },
-  { path: "/ToDo", label: "ToDo", roles: ["admin", "user"] }
+  { path: "/ToDo", label: "ToDo", roles: ["admin", "user"] },
+    { path: "/ImgUpload", label: "ImgUpload", roles: ["admin"] }
+
 ];
 
 
@@ -94,7 +94,7 @@ function NavBar() {
 function Layout() {
   const location = useLocation();
   const hideNav = location.pathname === "/"; // Hide NavBar on Login page
-
+const hideSidebar = location.pathname === "/"; // Hide Sidebar on Login page
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -158,33 +158,23 @@ function Layout() {
   );
   return (
     <>
-
-
     <div>
-
-
 <div style={{ display: 'flex' }}>
   <div>
-         <Button onClick={toggleDrawer(true)}>  <MenuIcon />
-      </Button>
-
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+    {!hideSidebar &&   <Button onClick={toggleDrawer(true)}>  <MenuIcon />
+      </Button>}
+      { !hideSidebar &&  <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
-      </Drawer>
+      </Drawer>}
     </div> 
     <div>
       {!hideNav && <NavBar />}
-
     </div>
-
     <div>
             <ThemeToggler />
-
     </div>
- 
-
     </div>
-
+    <div style={{ padding: '20px' ,marginTop:'20px',marginLeft:'10px',display:'flex',flexDirection:'column',gap:'20px',justifyContent:'center',alignItems:'center'}}>
 
       <Routes>
         <Route path="/" element={<Login />} />
@@ -197,8 +187,10 @@ function Layout() {
         <Route path="/Scroll" element={<ProtectedRoute element={<Scroll />} allowedRoles={["admin"]} />} />
         <Route path="/Products" element={<ProtectedRoute element={<Products />} allowedRoles={["admin"]} />} />
         <Route path="/Cart" element={<ProtectedRoute element={<Cart />} allowedRoles={["admin"]} />} />
+                <Route path="/ImgUpload" element={<ProtectedRoute element={<ImgUpload />} allowedRoles={["admin"]} />} />
         <Route path="/Unauthorized" element={<Unauthorized />} />
       </Routes>
+          </div>
 
       </div>
     </>

@@ -24,6 +24,7 @@ let data=JSON.parse(localStorage.getItem("user")|| "{}");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!emailRef.current || !passwordRef.current) return;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     let userfound = users.find(

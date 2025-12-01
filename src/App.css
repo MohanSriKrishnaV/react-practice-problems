@@ -1,0 +1,52 @@
+
+/* Base styles for body */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Theme */
+body.light {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Links and Buttons */
+a, button {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover Effects */
+a:hover, button:hover {
+  color: #61dafb;
+  background-color: rgba(97, 218, 251, 0.1);
+  border-radius: 4px;
+}
+
+/* Smooth transitions for all interactive elements */
+input, button {
+  transition: all 0.3s ease;
+}
+
+/* Inputs */
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus {
+  border-color: #61dafb;
+  outline: none;
+}
